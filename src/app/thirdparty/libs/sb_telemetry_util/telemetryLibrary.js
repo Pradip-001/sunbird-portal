@@ -1873,7 +1873,7 @@ var TelemetrySyncManager = {
   sendTelemetry: function (event) {
     var Telemetry = EkTelemetry || Telemetry
     var telemetryEvent = event.detail
-    console.log('Telemetry Events ', telemetryEvent)
+    console.log('New changes Telemetry Events ', telemetryEvent)
     var instance = TelemetrySyncManager
     instance._teleData.push(telemetryEvent)
     if ((telemetryEvent.eid.toUpperCase() == 'END') || (instance._teleData.length >= Telemetry.config.batchsize)) {
@@ -1897,12 +1897,12 @@ var TelemetrySyncManager = {
         data: JSON.stringify(telemetryObj)
       }).done(function (resp) {
         instance._teleData = []
-        console.log('Telemetry API success', resp)
+        console.log('New changes Telemetry API success', resp)
       }).fail(function (error, textStatus, errorThrown) {
         if (error.status == 403) {
           console.error('Authentication error: ', error)
         } else {
-          console.log('Error while Telemetry sync to server: ', error)
+          console.log('New changes Error while Telemetry sync to server: ', error)
         }
       })
     }
@@ -1983,6 +1983,7 @@ var EkTelemetry = (function () {
  * @param  {object} config - Configurations for the telemetry lib to initialize the service. " Example: config = { batchsize:10,host:"" } "
  */
   this.ektelemetry.initialize = function (config) {
+    console.log("TELEMETRY LIBRARY INITIANLIZE")
     instance.init(config)
   }
 
@@ -2047,6 +2048,7 @@ var EkTelemetry = (function () {
  * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
  */
   this.ektelemetry.interact = function (data, options) {
+    console.log("THIS IS TELEMETRY LIBRARY INTERACT")
     if (!instance.hasRequiredData(data, ['type', 'id'])) {
       console.error('Invalid interact data')
       return
@@ -2061,6 +2063,7 @@ var EkTelemetry = (function () {
     }
     instance.updateValues(options)
     instance._dispatch(instance.getEvent('INTERACT', data))
+    console.log("THIS IS END OF EKTELEMETRY LIBRARY INTERACT")
   }
 
   /**
@@ -2269,6 +2272,43 @@ var EkTelemetry = (function () {
     }
   }
 
+/**
+   IITBOMBAYX Chandrani Kar   Shreya Shambhawi Singh
+  *Which is used to log the bookmark added telemetry event.
+  * @param {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
+  * @param {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
+  */
+  this.ektelemetry.bookmark_added=function(data,options)
+  {
+     console.log("TELEMETRY LIBRARY EKTELEMETRY.BOOKMARK_ADDED")
+     console.log("bookmark_id: "+data.bookmark_id+" component_type: "+data.component_type+" component_usage_id: "+data.component_usage_id+" course_id: "+data.course_id)
+     if (!instance.hasRequiredData(data, ['bookmark_id', 'component_type', 'component_usage_id','course_id'])) {
+      console.error('Invalid bookmark_added_data')
+      return
+    }
+    instance.updateValues(options)
+    instance._dispatch(instance.getEvent('BOOKMARK_ADDED', data))
+  } 
+
+
+/**
+   IITBOMBAYX  Shreya Shambhawi Singh    Chandrani Kar
+  *Which is used to log the bookmark removed telemetry event.
+  * @param {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
+  * @param {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
+  */
+  this.ektelemetry.bookmark_removed=function(data,options)
+  {
+     console.log("TELEMETRY LIBRARY EKTELEMETRY.BOOKMARK_REMOVED")
+     console.log("bookmark_id: "+data.bookmark_id+" component_type: "+data.component_type+" component_usage_id: "+data.component_usage_id+" course_id: "+data.course_id)
+     if (!instance.hasRequiredData(data, ['bookmark_id', 'component_type', 'component_usage_id','course_id'])) {
+      console.error('Invalid bookmark_removed_data')
+      return
+    }
+    instance.updateValues(options)
+    instance._dispatch(instance.getEvent('BOOKMARK_REMOVED', data))
+  } 
+
   /**
  * Which is used to know the whether telemetry is initialized or not.
  * @return {Boolean}
@@ -2317,8 +2357,10 @@ var EkTelemetry = (function () {
  * @param  {object} type       [object type]
  */
   instance.init = function (config, contentId, contentVer) {
+    console.log("TELEMETRY INITIALIZE FOR BOOKMARK CHECK")
     if (EkTelemetry.initialized) {
       console.log('Telemetry is already initialized..')
+      console.log('New changes to see docker changes..')
       return
     }
     !config && (config = {})
@@ -2344,7 +2386,7 @@ var EkTelemetry = (function () {
     EkTelemetry.initialized = true
     telemetryInstance.dispatcher = EkTelemetry.config.dispatcher ? EkTelemetry.config.dispatcher : libraryDispatcher
     instance.updateConfigurations(config)
-    console.info('Telemetry is initialized.')
+    console.info('New changes Telemetry is initialized.')
   }
 
   /**
@@ -2352,6 +2394,7 @@ var EkTelemetry = (function () {
  * @param  {object} message [Telemetry event object]
  */
   instance._dispatch = function (message) {
+    console.log("NEW DISPATCH FOR BOOKMARK")
     message.mid = message.eid + ':' + CryptoJS.MD5(JSON.stringify(message)).toString()
     if (telemetryInstance.runningEnv === 'client') {
       if (!message.context.did) {
@@ -2448,6 +2491,7 @@ var EkTelemetry = (function () {
  * @param  {object} object  [Object value]
  */
   instance.updateValues = function (options) {
+    console.log("INSTANCE UPDATE VALUES FOR BOOKMARK")
     if (options) {
       options.context && (telemetryInstance._currentContext = options.context)
       options.object && (telemetryInstance._currentObject = options.object)

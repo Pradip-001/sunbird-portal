@@ -157,6 +157,9 @@ angular.module('playerApp')
       }
 
       dataDrivenForm.saveMetaData = function (data, dataDrivenFormData) {
+        console.log('New changes')
+        console.log(data)
+        console.log(dataDrivenFormData)
         dataDrivenForm.isSubmit = true
         if (data === undefined || data === null || data === '') {
           data = {}

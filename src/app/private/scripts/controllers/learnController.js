@@ -15,7 +15,7 @@ angular.module('playerApp')
         $rootScope.search.searchKeyword = ''
         var showLectureView = 'no'
             $rootScope.enrolledCourseIds[course.courseId || course.identifier] ? showLectureView = 'no' : showLectureView = 'yes'; //eslint-disable-line
-
+        console.log(" private/scripts/controller folder learncontroller.js file opencourseview starting")
         var params = {
           courseType: courseType,
           courseId: course.courseId || course.identifier,
@@ -25,14 +25,14 @@ angular.module('playerApp')
           courseName: course.courseName || course.name,
           lastReadContentId: course.lastReadContentId
         }
-
+         console.log(" private/scripts/controller folder learncontroller.js file opencourseview middle")
         sessionService.setSessionData('COURSE_PARAMS', params)
         $rootScope.isPlayerOpen = true
         $state.go('Toc', params)
         telemetryService.interactTelemetryData('course', course.courseId, 'course',
           $rootScope.version, 'course-read', 'course')
       }
-
+ console.log(" private/scripts/controller folder learncontroller.js file opencourseview end")
       learn.courses = function () {
         var api = 'enrollCourseApi'
         learn[api] = {}

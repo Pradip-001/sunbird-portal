@@ -1,0 +1,16 @@
+
+<!--Contributed by (Pradip Karnavat) 
+    Email : karnavatpradip12345@gmail.com-->
+
+<div class="coursedetail_container">
+
+<h1>{{container}}</h1>
+
+<p>{{description}}</p>
+
+<div class="courseitems" ng-repeat="data in coursedetails" ng-click="openFile(data)">
+	<!-- <img ng-src="http://10.129.103.85:5000/v1/course/iitbx/{{container}}/{{data}}" class="courseitemicon"> -->
+	<img ng-src="{{data.split('.')[1]=='png' ? 'http://10.129.103.85:5000/v1/course/iitbx'+'/'+container+'/'+data+'/view' : data.split('.')[1]=='pdf' ? pdfimage : data.split('.')[1]=='mp3' ? imagesound : data.split('.')[1]=='mp4' ? imagevideo : imageunknown}}" class="courseitemicon">
+	<h3>{{data}}</h3>
+</div>
+</div>

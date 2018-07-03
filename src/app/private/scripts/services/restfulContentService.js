@@ -39,6 +39,8 @@ angular.module('playerApp')
       function httpCall (url, data, method, header, qs) {
         var headers = header || getHeader()
         var URL = config.URL.BASE_PREFIX + config.URL.CONTENT_PREFIX + url
+        console.log('New changes')
+        console.log(URL)
 
         var contextData = {
           env: telemetryService.getConfigData('env'),

@@ -1,0 +1,71 @@
+{
+    "id": "org.ekstep.demo",
+    "ver": "1.0",
+    "author": "ravi k",
+    "type": "plugin",
+    "title": "demo",
+    "description": "This plugin is an example plugin",
+    "editor": {
+        "main": "editor/plugin.js",
+        "dependencies": [
+            { "type": "js", "src": "editor/init.js" }
+        ],
+        "menu": [
+				{ 
+	
+		    "id": "imgicon", 
+		    "category": "main", 
+		    "type": "image", 
+		    "toolTip": "Add icons", 
+		    "title": "imgicon", 
+		    "iconImage": "assets/image.png", 
+		    "iconClass": "",
+		    "iconStyle": "", 
+		    "onclick": {
+			"id": "org.ekstep.demo:create",
+			"data": { 
+			    "type": "roundrect",
+			    "y": 20,
+			    "x": 25,
+			    "fill": "#3399FF",
+			    "w": 27,
+			    "h": 60
+			}	
+		    },
+		    "submenu": [] 
+		}
+	
+	],
+        "help": {
+            "src": "editor/help.md",
+            "dataType": "text"
+        },
+	"init-data": {
+            "type": "roundrect",
+            "x": 11,
+            "y": 0.1,
+            "w": 78,
+            "h": 99,
+            "radius": 10,
+            "stroke": "rgba(255, 255, 255, 255)",
+            "strokeWidth": 1
+        },
+        "configManifest": [{
+            "propertyName": "wordText",
+            "title": "Enter the word you want to teach (Max 10 alphabets)",
+            "placeholder": "Example: Apple",
+            "description": "Word",
+            "dataType": "input",
+            "valueType": "text",
+            "required": true,
+            "defaultValue": "Apple"
+        }]
+    },
+    "renderer": {
+        "main": "renderer/plugin.js"
+    },
+    "icon": "assets/icon.png",
+    "languages": ["English"],
+    "categories": [""],
+    "keywords": [""]
+}

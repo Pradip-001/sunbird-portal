@@ -392,7 +392,8 @@ angular.module('playerApp')
 
       /* ---telemetry-interact-event-- */
       toc.generateInteractEvent = function (env, objId, objType, objVer, edataId, pageId, objRollup) {
-        telemetryService.interactTelemetryData(env, objId, objType, objVer, edataId, pageId, objRollup)
+         console.log("printing telemetry params :"+"env : "+env+"   objID :"+objId+"   objType:"+objType+"    objVer :"+objVer+"   edataId: "+edataId+"   pageId:"+pageId+"   objRollup : "+objRollup[l1]+ " " + objRollup[l2] + " "+ objRollup[l3]+" "+objRollup[l4]);
+	 telemetryService.interactTelemetryData(env, objId, objType, objVer, edataId, pageId, objRollup)
       }
     }
   ])

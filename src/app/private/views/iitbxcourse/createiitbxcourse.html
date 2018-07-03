@@ -1,0 +1,74 @@
+<!--Contributed by (Pradip Karnavat) 
+    Email : karnavatpradip12345@gmail.com  
+see header/header.html for permission binding
+-->
+ <div class="createcourse_parent">
+
+<div class="container createcoursecontainer">
+    <h3 class="coursecreate_form_title">Create Course</h3>
+  <form>
+    <label for="coursetitle">Course Title</label>
+    <input type="text" id="coursetitle" name="coursetitle" placeholder="Course Title.." ng-model="formdata.coursetitle">
+
+    <!-- <label for="myFile">Upload Thumbnail</label>
+    <input id="myFile" type="file" name="myFile" file-model = "formdata.myFile" placeholder="Thumbnail"> -->
+
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" placeholder="Write something about course.." style="height:200px" ng-model="formdata.description"></textarea>
+
+    <label>Topics</label>
+    <div class="row">
+
+    <div class="topics col-xs-12 col-md-6" name="topics" ng-repeat="topic in formdata.topics">
+        <p class="subtopictitle">{{topic.subtopic.name}}</p>
+        <button ng-click="removeTopic(topic)" class="removetopic btn btn-danger">remove</button>
+    </div>
+    </div>
+
+    <button id="addtopic" class="btn btn-success" name="addtopic" ng-click="addtopic()">+Add</button>
+
+    <div ng-show="showaddform">
+    <form>
+        <label for="subtopic">Topic Title</label>
+        <input type="file" name="subtopic" id="subtopic" placeholder="topic" file-model="newtopic.subtopic">
+        <input type="button" value="add" class="addbutton btn btn-primary" ng-click="add()">
+    </form>
+    </div>
+
+    <input type="button" value="Create" class="submitformbutton btn btn-primary" ng-click="submit()">
+  </form>
+</div>
+</div>
+
+
+
+
+
+
+<!-- <div class="createcourse_parent">
+
+<div class="container createcoursecontainer">
+	<h3 class="coursecreate_form_title">Create Course</h3>
+  <form>
+    <label for="coursetitle">Course Title</label>
+    <input type="text" id="coursetitle" name="coursetitle" placeholder="Course Title.." ng-model="coursetitle">
+
+    <label for="course_thumb">Upload Thumbnail</label>
+    <input id="course_thumb" type="file" name="course_thumb" file-model = "myFile" placeholder="Thumbnail" required="" capture>
+
+    <label for="course_pdf">Upload pdf</label>
+    <input id="course_pdf" type="file" name="course_pdf" file-model = "myFilepdf" placeholder="pdf file" required="" capture>
+
+    
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" placeholder="Write something about course.." style="height:200px" ng-model="description"></textarea>
+
+    <input type="button" value="Create" class="btn btn-primary" ng-click="submitCourse()">
+  </form>
+</div>
+</div>
+
+ -->
+

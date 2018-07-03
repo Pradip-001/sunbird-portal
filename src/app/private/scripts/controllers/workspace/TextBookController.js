@@ -25,6 +25,7 @@ angular.module('playerApp')
       }
 
       textbook.initializeModal = function () {
+console.log("Entered private/scripts/controller/workspace TextBookController.js")
         textbook.showCreateTextBookModal = true
         telemetryService.impressionTelemetryData('workspace', '', 'textbook', '1.0', 'scroll',
           'workspace-create-textbook', '/create/textbook')
@@ -41,6 +42,7 @@ angular.module('playerApp')
             })
             .modal('show')
         })
+console.log(" private/scripts/controller/workspace textbookcntroller.js file initialize ending")
       }
 
       textbook.createContent = function (requestData) {

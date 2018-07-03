@@ -107,6 +107,7 @@ angular.module('playerApp')
          * initialize telemetryLib
          */
     this.init = function () {
+      console.log("TELEMETRY SERVICE THIS.INIT")
       this.setConfig()
       console.log('Initialize telemetry')
       EkTelemetry.initialize(this.config) // eslint-disable-line no-undef
@@ -153,12 +154,49 @@ angular.module('playerApp')
          * data object have these properties {'edata', 'context', 'object', 'tags'}
          */
     this.interact = function (data) {
+    console.log("THIS IS TELEMETRY SERVICE INTERACT WHICH CALLS LIBRARY(MAYBE)")
       EkTelemetry.interact(data.edata, { // eslint-disable-line no-undef
         context: data.context,
         object: data.object,
         tags: _.compact(data.tags) || _.concat([], org.sunbird.portal.channel)
       })
+    console.log("TELEMETRY SERVICE INTERACT OVER")
     }
+
+    /**
+         *IITBOMBAYX
+         *Chandrani Kar
+         *Shreya Shambhawi Singh
+               * for bookmark_added event
+               * data object have these properties {'edata', 'context', 'object', 'tags'}
+         */
+    this.bookmark_added = function (data) {
+      console.log("TELEMETRY SERVICE THIS.BOOKMARK_ADDED")
+      EkTelemetry.bookmark_added(data.edata, { // eslint-disable-line no-undef
+        context: data.context,
+        object: data.object,
+        tags: _.compact(data.tags) || _.concat([], org.sunbird.portal.channel)
+      })
+    }
+
+
+    /**
+         *IITBOMBAYX
+         *Shreya Shambhawi Singh
+         *Chandrani Kar
+                * for bookmark_removed event
+                * data object have these properties {'edata', 'context', 'object', 'tags'}
+         */
+    this.bookmark_removed = function (data) {
+      console.log("TELEMETRY SERVICE THIS.BOOKMARK_REMOVED")
+      EkTelemetry.bookmark_removed(data.edata, { // eslint-disable-line no-undef
+        context: data.context,
+        object: data.object,
+        tags: _.compact(data.tags) || _.concat([], org.sunbird.portal.channel)
+      })
+    }	
+
+
 
     /**
          * for log event
@@ -276,7 +314,8 @@ angular.module('playerApp')
          * @param {object} target
          */
     this.interactEventData = function (type, subtype, id, pageid, target) {
-      var interactEventData = {
+       console.log("This is interact Event Data function call.!!!!!!!!!!!!!!!!!!!!!!")
+       var interactEventData = {
         type: type,
         subtype: subtype,
         id: id,
@@ -286,7 +325,49 @@ angular.module('playerApp')
       return JSON.parse(JSON.stringify(interactEventData))
     }
 
-    /**
+ /** * IITBOMBAYX 
+     * Chandrani Kar
+     * Shreya Shambhawi Singh
+         * @param {string} bookmark_id
+         * @param {string} component_type
+         * @param {string} component_usage_id
+         * @param {string} course_id
+         */
+    this.bookmark_addedEventData = function (bookmark_id, component_type, component_usage_id, course_id) {
+      console.log("TELEMETRY SERVICE BOOKMARK_ADDEDEVENTDATA")
+      console.log("bookmark_id: "+bookmark_id+" component_type: "+component_type+" component_usage_id: "+component_usage_id+" course_id: "+course_id)
+      var bookmarkEventData = {
+        bookmark_id: bookmark_id,
+        component_type:component_type,
+        component_usage_id:component_usage_id,
+        course_id:course_id
+      }
+      return JSON.parse(JSON.stringify(bookmarkEventData))
+    }
+ 
+  /** * IITBOMBAYX 
+      * Shreya Shambhawi Singh
+      * Chandrani Kar 
+         * @param {string} bookmark_id
+         * @param {string} component_type
+         * @param {string} component_usage_id
+         * @param {string} course_id
+         */
+
+    this.bookmark_removedEventData = function (bookmark_id, component_type, component_usage_id, course_id) {
+      console.log("TELEMETRY SERVICE BOOKMARK_REMOVEDEVENTDATA")
+      console.log("bookmark_id: "+bookmark_id+" component_type: "+component_type+" component_usage_id: "+component_usage_id+" course_id: "+course_id)
+      var bookmarkEventData = {
+        bookmark_id: bookmark_id,
+        component_type:component_type,
+        component_usage_id:component_usage_id,
+        course_id:course_id
+      }
+      return JSON.parse(JSON.stringify(bookmarkEventData))
+    }
+
+
+/**
          *
          * @param {string} type
          * @param {string} level
@@ -413,6 +494,7 @@ angular.module('playerApp')
     }
 
     this.interactTelemetryData = function (env, objId, objType, objVer, edataId, pageId, objRollup) {
+     console.log(" This is interact telemetry data function call. !!!!!!!!!!!!")
       var contextData = {
         env: env,
         rollup: this.getRollUpData($rootScope.organisationIds)
@@ -430,9 +512,69 @@ angular.module('playerApp')
         object: this.getObjectData(objectData),
         tags: _.concat([], org.sunbird.portal.channel)
       }
-
+      console.log("CALL TO INTERACT OF TELEMETRY LIBRARY")
       this.interact(data)
+      console.log("END TO CALL OF LIBRARY")
     }
+
+   /** * IITBOMBAYX 
+         * Chandrani Kar
+         * Shreya Shambhawi Singh
+         */
+
+    this.bookmark_addedTelemetryData = function (env, objId, objType, objVer, edataId, pageId, objRollup) {
+      console.log("TELEMETRY SERVICE BOOKMARK_ADDEDTELEMETRYDATA")
+      console.log("env: "+env+" objId: "+objId+" objType: "+objType+" objVer: "+objVer+" edataId: "+edataId+" pageId: "+pageId)
+      var contextData = {
+        env: env,
+        rollup: this.getRollUpData($rootScope.organisationIds)
+      }
+      var objectData = {
+        id: objId,
+        type: objType,
+        ver: objVer,
+        rollup: this.getRollUpData(objRollup)
+      }
+
+      var data = {
+        edata: this.bookmark_addedEventData(objId+edataId, edataId, pageId, objId),
+        context: this.getContextData(contextData),
+        object: this.getObjectData(objectData),
+        tags: _.concat([], org.sunbird.portal.channel)
+      }
+
+      this.bookmark_added(data)
+    }
+
+    /** * IITBOMBAYX 
+         * Shreya Shambhawi Singh
+         * Chandrani Kar
+         */
+
+    this.bookmark_removedTelemetryData = function (env, objId, objType, objVer, edataId, pageId, objRollup) {
+      console.log("TELEMETRY SERVICE BOOKMARK_REMOVEDTELEMETRYDATA")
+      console.log("env: "+env+" objId: "+objId+" objType: "+objType+" objVer: "+objVer+" edataId: "+edataId+" pageId: "+pageId)
+      var contextData = {
+        env: env,
+        rollup: this.getRollUpData($rootScope.organisationIds)
+      }
+      var objectData = {
+        id: objId,
+        type: objType,
+        ver: objVer,
+        rollup: this.getRollUpData(objRollup)
+      }
+
+      var data = {
+        edata: this.bookmark_removedEventData(objId+edataId, edataId, pageId, objId),
+        context: this.getContextData(contextData),
+        object: this.getObjectData(objectData),
+        tags: _.concat([], org.sunbird.portal.channel)
+      }
+
+      this.bookmark_removed(data)
+    }
+
 
     this.impressionTelemetryData = function (env, objId, objType, objVer, subtype, pageId,
       uri, objRollup, visit) {

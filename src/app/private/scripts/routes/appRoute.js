@@ -31,6 +31,24 @@ angular.module('playerApp')
           $rootScope.homeActive = ''
         }
       })
+      .state('iitbx', {
+        url: '/iitbx/:id',
+        views: {
+          mainView: {
+            templateUrl: '/views/iitbxcourse/courseview.html',
+            controller: 'iitbxCourseCtrl'
+          }
+        }
+      })
+      .state('iitbxcreate', {
+        url: '/createiitbxcourse',
+        views: {
+          mainView: {
+            templateUrl: '/views/iitbxcourse/createiitbxcourse.html',
+            controller: 'iitbxCreateCourseCtrl'
+          }
+        }
+      })
       .state('UserContent', {
         url: '/content',
         views: {

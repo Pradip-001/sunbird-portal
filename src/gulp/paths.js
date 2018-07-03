@@ -296,7 +296,13 @@ var paths = {
     'dist/private/scripts/controllers/badge/contentBadgeController.js',
     'dist/private/scripts/services/badgeService.js',
     'dist/private/scripts/controllers/workspace/DataDrivenFormController.js',
-    'dist/private/scripts/controllers/badge/profileBadgeController.js'
+    'dist/private/scripts/controllers/badge/profileBadgeController.js',
+    'dist/private/scripts/directives/iitbxDirective.js',
+    'dist/private/scripts/directives/bookmark.js',
+    'dist/private/scripts/controllers/iitbxController.js',
+    'dist/private/scripts/controllers/iitbxCoursecontroller.js',
+    'dist/private/scripts/controllers/iitbxCreateCoursecontroller.js',
+    'dist/private/scripts/controllers/bookmarkController.js'
   ],
   telemetry_js: [
     'dist/private/scripts/telemetry/TelemetryEvent.js',

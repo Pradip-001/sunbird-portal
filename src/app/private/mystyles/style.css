@@ -1,0 +1,140 @@
+.iitbxcss{
+	background-color: green;
+	color: red;
+}
+
+.testimonial-group{
+	margin-right: 100px;
+	margin-left: 100px;
+	height:250px;
+	padding: 0px;
+	overflow-y: hidden;
+}
+.testimonial-group > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow-y: hidden;
+}
+
+.coursecontainer {  
+	display: inline-block;
+    float:none;
+	height:100%;
+	margin: 0px;
+	margin: 2px;
+	transition: 0.1s;
+	cursor: pointer;
+}
+.coursecontainer:hover{
+	transform: scale3d(1.02,1.02,1.02);
+}
+
+.courseimagecontainer{
+	height: 100%;
+	width:  100%;
+	overflow-y: hidden;
+}
+.courseimage{
+	width: 100%;
+
+}
+
+.coursetitle{
+	text-align: center;
+	font-weight: bold;
+	color:white;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.5);
+	transform: translateY(-100%);
+}
+
+
+.iitbxtitle{
+	margin-top: 25px;
+	margin-left: 100px;
+	font-weight: bolder;
+	font-size: 23px;
+}
+
+.coursedetail_container{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.courseitems{
+	background-color: #0272A6;
+	color: white;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 10px;
+	transition: 0.1s;
+	cursor: pointer;
+}
+.courseitems:hover{
+	transform: scale3d(1.01,1.01,1.01);
+}
+
+
+
+
+/*create course styles*/
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.createcoursecontainer {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.coursecreate_form_title{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.courseitemicon{
+	height:50px;
+	width: 50px;
+}
+
+.topics{
+	
+	background-color: pink;
+	border-radius: 3px;
+	padding: 10px;
+	margin:5px;
+}
+
+.addbutton{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.submitformbutton{
+	margin-top: 10px;
+}
