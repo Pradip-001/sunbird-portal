@@ -19,7 +19,9 @@ angular.module('playerApp').directive('fileModel', ['$parse', function ($parse) 
          }]);
 
 
-angular.module('playerApp').service('multipartForm', ['$http', function($http){
+angular.module('playerApp').service('multipartForm', ['$http',function($http){
+     
+      
       this.post = function(uploadUrl, data){
         var fd = new FormData();
         fd.append('title',data.coursetitle);
@@ -30,14 +32,16 @@ angular.module('playerApp').service('multipartForm', ['$http', function($http){
           console.log(data.topics[i].subtopic.name);
           fd.append('myFile'+i,data.topics[i].subtopic);
         }
-        // fd.append('topics',data.topics);
-        // for(var key in data){
-        //  fd.append(key, data[key]);
-        //   console.log(key + " " + data[key])
-        // }
+       
         $http.post(uploadUrl, fd, {
           transformRequest: angular.indentity,
           headers: { 'Content-Type': undefined }
+        }).then(function(response) {
+            console.log(response.data);
+            $("#successmsg").show();
+        }, function(response) {
+            console.log(response.data);
+            $("#errormsg").show();
         });
       }
      }])
@@ -51,8 +55,13 @@ angular.module('playerApp').controller('iitbxCreateCourseCtrl', ['$scope','multi
   $scope.showaddform = false;
   $scope.formdata = {};
   $scope.formdata.topics = [];
+
+   $("#successmsg").hide();
+   $("#errormsg").hide();
       $scope.submit = function(){
         var uploadUrl = 'http://10.129.103.85:5000/v1/course/iitbx/createcourse';
+       $("#successmsg").hide();
+       $("#errormsg").hide();
         multipartForm.post(uploadUrl, $scope.formdata);
     }
 
@@ -74,73 +83,5 @@ angular.module('playerApp').controller('iitbxCreateCourseCtrl', ['$scope','multi
       $scope.showaddform = false;
     }
 
-// $scope.submitCourse = function(){
-
-
-// 				var file = $scope.myFile;
-               
-//                // console.log('file is ' );
-//                // console.dir(file);
-
-//             var filepdf = $scope.myFilepdf;
-
-
-//             var coursedataform = new FormData();
-//                coursedataform.append('coursetitle', $scope.coursetitle);
-//                coursedataform.append('coursedescription', $scope.description);
-//                coursedataform.append('thumbnail', file);
-//                coursedataform.append('filepdf',filepdf);
-
-
-//             var coursedata = {
-//                'coursetitle':$scope.coursetitle,
-//                'coursedescription':$scope.description,
-//                'thumbnail':file,
-//                'filepdf':filepdf
-//             }
-
-
-
-
-			      
-
-//          //       console.log(coursedata);
-
-//                console.log(coursedataform.get('filepdf'));
-               
-
-            
-//             $http({
-//                         method: 'POST',
-//                         url: 'http://10.129.103.85:5000/v1/course/iitbx',
-//                         headers: {'Content-Type': undefined},
-//                         data: coursedataform
-//                  }).then(function success(response) {
-
-//                         // $scope.coursedetails = response.data;
-//                         console.log(response.data);
-                        
-
-//                  }, function error(response) {
-//                          alert("Error ! Error ! Error !");
-//                          console.log(response.data);
-//                 });
-//                // $https:.post(, fd, {
-//                //    transformRequest: angular.identity,
-//                //    headers: {'Content-Type': undefined}
-//                // })
-            
-//                // .success(function(){
-//                // })
-            
-//                // .error(function(){
-//                // });
-
-
-			
-// 	// alert($scope.coursetitle +" "+$scope.description);
-
-
-// }
 
 }]);

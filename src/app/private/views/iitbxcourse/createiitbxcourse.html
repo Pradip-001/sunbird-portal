@@ -8,16 +8,16 @@ see header/header.html for permission binding
     <h3 class="coursecreate_form_title">Create Course</h3>
   <form>
     <label for="coursetitle">Course Title</label>
-    <input type="text" id="coursetitle" name="coursetitle" placeholder="Course Title.." ng-model="formdata.coursetitle">
+    <input type="text" id="coursetitle" name="coursetitle" placeholder="Course Title.." ng-model="formdata.coursetitle" required>
+    
 
-    <!-- <label for="myFile">Upload Thumbnail</label>
-    <input id="myFile" type="file" name="myFile" file-model = "formdata.myFile" placeholder="Thumbnail"> -->
 
 
     <label for="description">Description</label>
-    <textarea id="description" name="description" placeholder="Write something about course.." style="height:200px" ng-model="formdata.description"></textarea>
+    <textarea id="description" name="description" placeholder="Write something about course.." style="height:200px" ng-model="formdata.description" required></textarea>
+    
 
-    <label>Topics</label>
+    <label>Course Topics</label>
     <div class="row">
 
     <div class="topics col-xs-12 col-md-6" name="topics" ng-repeat="topic in formdata.topics">
@@ -37,38 +37,21 @@ see header/header.html for permission binding
     </div>
 
     <input type="button" value="Create" class="submitformbutton btn btn-primary" ng-click="submit()">
+
   </form>
+
+    <div class="alert alert-success alert-dismissible fade in" id="successmsg" style="display: none">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> Course Created Successfully.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in" id="errormsg" style="display: none">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Danger!</strong> Something Went Wrong.
+    </div>
 </div>
 </div>
 
 
 
-
-
-
-<!-- <div class="createcourse_parent">
-
-<div class="container createcoursecontainer">
-	<h3 class="coursecreate_form_title">Create Course</h3>
-  <form>
-    <label for="coursetitle">Course Title</label>
-    <input type="text" id="coursetitle" name="coursetitle" placeholder="Course Title.." ng-model="coursetitle">
-
-    <label for="course_thumb">Upload Thumbnail</label>
-    <input id="course_thumb" type="file" name="course_thumb" file-model = "myFile" placeholder="Thumbnail" required="" capture>
-
-    <label for="course_pdf">Upload pdf</label>
-    <input id="course_pdf" type="file" name="course_pdf" file-model = "myFilepdf" placeholder="pdf file" required="" capture>
-
-    
-
-    <label for="description">Description</label>
-    <textarea id="description" name="description" placeholder="Write something about course.." style="height:200px" ng-model="description"></textarea>
-
-    <input type="button" value="Create" class="btn btn-primary" ng-click="submitCourse()">
-  </form>
-</div>
-</div>
-
- -->
 

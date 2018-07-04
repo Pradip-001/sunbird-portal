@@ -40,7 +40,6 @@ angular.module('playerApp').controller('iitbxCtrl', ['$scope','$http', function(
 
     $scope.opencontainer = function(item){
        // alert(item)
-
 window.location.href="#!/iitbx/"+item;
                 //  $http({
                 //         method: 'GET',
